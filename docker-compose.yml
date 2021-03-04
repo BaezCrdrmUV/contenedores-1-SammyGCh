@@ -1,0 +1,35 @@
+version: '3.9'
+
+services: 
+  mysql_personas:
+    image: mysql/mysql-server:latest
+    ports:
+      - "3309:3306"
+    restart: always
+    volumes: 
+      - db_volume_personas:/var/lib/mysql
+      - ./database/personas.sql:/docker-entrypoint-initdb.d/personas.sql:ro
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_0900_ai_ci']
+    environment: 
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_HOST: localhost
+      MYSQL_DATABASE: "personas"
+      MYSQL_USER: "root"
+    # MYSQL_USER: "adminPersonas"
+    # MYSQL_PASSWORD: "practica1"
+    container_name: personas_database
+
+  simple_app:
+    image: console_app_personas
+    depends_on: 
+      - mysql_personas
+    build: 
+      context: ./PersonasApp/
+      dockerfile: Dockerfile
+    environment: 
+      DB_CONNECTION_STRING: "server=localhost;port=3306;user=adminPersonas;password=practica1;database=personas;"
+    container_name: personas_app
+
+
+volumes: 
+  db_volume_personas:
