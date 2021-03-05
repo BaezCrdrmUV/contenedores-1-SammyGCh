@@ -25,6 +25,12 @@ CREATE TABLE IF NOT EXISTS `personas`.`persona` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
+LOCK TABLES `persona` WRITE;
+/*!40000 ALTER TABLE `persona` DISABLE KEYS */;
+INSERT INTO `persona` VALUES ('GUCS991001HVZDHM09','Sammy','Guadarrama');
+/*!40000 ALTER TABLE `persona` ENABLE KEYS */;
+UNLOCK TABLES;
+
 
 -- -----------------------------------------------------
 -- Table `personas`.`email`
@@ -42,6 +48,11 @@ ENGINE = InnoDB
 AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8;
 
+LOCK TABLES `email` WRITE;
+/*!40000 ALTER TABLE `email` DISABLE KEYS */;
+INSERT INTO `email` VALUES (1,'sammy@gmail.com','GUCS991001HVZDHM09');
+/*!40000 ALTER TABLE `email` ENABLE KEYS */;
+UNLOCK TABLES;
 
 -- -----------------------------------------------------
 -- Table `personas`.`telefono`
@@ -59,6 +70,13 @@ ENGINE = InnoDB
 AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8;
 
+LOCK TABLES `telefono` WRITE;
+/*!40000 ALTER TABLE `telefono` DISABLE KEYS */;
+INSERT INTO `telefono` VALUES (1,'2881001212','GUCS991001HVZDHM09');
+/*!40000 ALTER TABLE `telefono` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
 CREATE USER 'adminPersonas' IDENTIFIED BY 'practica1';
 
 GRANT ALL ON `personas`.* TO 'adminPersonas';
@@ -70,15 +88,3 @@ GRANT EXECUTE ON ROUTINE `personas`.* TO 'adminPersonas';
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
-
-START TRANSACTION;
-USE `personas`;
-INSERT INTO `personas`.`email` (`idemail`, `email`, `curp`) VALUES (1,'sammy@gmail.com','GUCS991001HVZDHM09');
-COMMIT;
-
-
-START TRANSACTION;
-USE `personas`;
-INSERT INTO `personas`.`telefono` (`idtelefono`, `telefono`, `curp`) VALUES (1,'2881001212','GUCS991001HVZDHM09');
-COMMIT;
