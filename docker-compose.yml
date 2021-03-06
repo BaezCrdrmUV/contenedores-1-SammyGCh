@@ -14,20 +14,20 @@ services:
       MYSQL_ROOT_PASSWORD: "root"
       MYSQL_HOST: localhost
       MYSQL_DATABASE: "personas"
-      MYSQL_USER: "root"
-    # MYSQL_USER: "adminPersonas"
-    # MYSQL_PASSWORD: "practica1"
+      #MYSQL_USER: "root"
+      MYSQL_USER: "adminPersonas"
+      MYSQL_PASSWORD: "practica1"
     container_name: personas_database
 
   simple_app:
     image: console_app_personas
     depends_on: 
-      - mysql_personas
+      - "mysql_personas"
     build: 
       context: ./PersonasApp/
       dockerfile: Dockerfile
     environment: 
-      DB_CONNECTION_STRING: "server=localhost;port=3306;user=adminPersonas;password=practica1;database=personas;"
+      DB_CONNECTION_STRING: "server=personas_database;user=adminPersonas;password=practica1;database=personas;"
     container_name: personas_app
 
 

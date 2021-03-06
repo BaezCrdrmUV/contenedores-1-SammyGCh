@@ -14,6 +14,9 @@ namespace PersonasApp
             
             bool salir = false;
             string opcionEntrada = "";
+
+            string infoConnection = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+            Console.WriteLine(infoConnection);
             do
             {
                 if (args.Length == 0)
@@ -22,29 +25,30 @@ namespace PersonasApp
                     // Console.ReadLine();
 
                     Console.WriteLine("\n-- DEBE INGRESAR UNA OPCION --");
-                    salir = true;
+                    opcionEntrada = "1";
                 }
 
-                if (args.Length > 0 && (args[0].Equals("1") || opcionEntrada.Equals("1")))
+                if (args.Length > 0 && args[0].Equals("1")|| opcionEntrada.Equals("1"))
                 {
+                    string opcion = "";
                     Console.WriteLine("\nDigita el número de la opción deseada:");
                     Console.WriteLine("1. Consultar Personas.\n2. Agregar Personas.\n3. Actualizar persona.\n4. Salir");
                     Console.WriteLine("\nOpción: ");
-                    int opcion = int.Parse(Console.ReadLine());
+                    opcion = Console.ReadLine();
 
                     PersonaDataManager personaData = new PersonaDataManager();
 
                     switch (opcion)
                     {
-                        case 1:
+                        case "1":
                             Console.WriteLine("\nDigita el número de la opción deseada:");
                             Console.WriteLine("\n1. Mostrar todas las personas registradas.\n2. Buscar por CURP.");
                             Console.WriteLine("\nOpción: ");
-                            opcion = int.Parse(Console.ReadLine());
+                            opcion = Console.ReadLine();
 
                             switch (opcion)
                             {
-                                case 1:
+                                case "1":
                                     Console.WriteLine("\n--- TODAS LAS PERSONAS REGISTRADAS: ---");
 
                                     List<Persona> todasLasPersonas = personaData.ObtenerTodasLasPersonas();
@@ -54,7 +58,7 @@ namespace PersonasApp
                                     );
 
                                     break;
-                                case 2:
+                                case "2":
                                     Console.WriteLine("\nIngresa la CURP de la Persona a buscar:");
                                     string curp = Console.ReadLine();
 
@@ -84,7 +88,7 @@ namespace PersonasApp
                             }
 
                             break;
-                        case 2:
+                        case "2":
                             Console.WriteLine("\n---Agregar nueva persona: ----");
 
                             Persona nuevaPersona = new Persona();
@@ -97,10 +101,10 @@ namespace PersonasApp
                             nuevaPersona.Curp = Console.ReadLine();
 
                             Console.WriteLine("\nIngresa la cantidad de telefonos a registrar: ");
-                            int cantidad = int.Parse(Console.ReadLine());
+                            string cantidad = Console.ReadLine();
 
                             nuevaPersona.Telefonos = new List<Telefono>();
-                            for (int i = 0; i < cantidad; i++)
+                            for (int i = 0; i < int.Parse(cantidad); i++)
                             {
                                 Console.Write($"Telefono {i + 1}: ");
                                 nuevaPersona.Telefonos.Add(
@@ -111,12 +115,12 @@ namespace PersonasApp
                                 );
                             }
 
-                            cantidad = 0;
+                            cantidad = "";
                             Console.WriteLine("\nIngresa la cantidad de emails a registrar: ");
-                            cantidad = int.Parse(Console.ReadLine());
+                            cantidad = Console.ReadLine();
 
                             nuevaPersona.Emails = new List<Email>();
-                            for (int i = 0; i < cantidad; i++)
+                            for (int i = 0; i < int.Parse(cantidad); i++)
                             {
                                 Console.Write($"Email {i + 1}: ");
                                 nuevaPersona.Emails.Add(
@@ -139,7 +143,7 @@ namespace PersonasApp
                             }
 
                             break;
-                        case 3:
+                        case "3":
                             Console.WriteLine("\nIngresa la CURP de la Persona a actualizar:");
                             string curpPersona = Console.ReadLine();
 
@@ -163,11 +167,11 @@ namespace PersonasApp
                                     "\n3. Actualizar Telefono.\n4. Actualizar Email.\n5. Agregar nuevo telefono.\n6. Agregar nuevo email." +
                                     "\n7. Cancelar.");
                                 Console.WriteLine("\nOpción: ");
-                                int opcionActualizacion = int.Parse(Console.ReadLine());
+                                string opcionActualizacion = Console.ReadLine();
 
                                 switch (opcionActualizacion)
                                 {
-                                    case 1:
+                                    case "1":
                                         Console.WriteLine("\nIngresa el nuevo nombre: ");
                                         string nuevoNombre = Console.ReadLine();
 
@@ -184,7 +188,7 @@ namespace PersonasApp
                                             Console.WriteLine("\n-- ERROR AL ACTUALIZAR --");
                                         }
                                         break;
-                                    case 2:
+                                    case "2":
                                         Console.WriteLine("\nIngresa los nuevos apellidos: ");
                                         string nuevosApellidos = Console.ReadLine();
 
@@ -202,16 +206,16 @@ namespace PersonasApp
                                         }
 
                                         break;
-                                    case 3:
+                                    case "3":
                                         Console.WriteLine("\nIngresa el ID del telefono a actualizar: ");
-                                        int idTelefono = int.Parse(Console.ReadLine());
+                                        string idTelefono = Console.ReadLine();
 
-                                        if (personaAActualizar.Telefonos.Any(telefono => telefono.Id == idTelefono))
+                                        if (personaAActualizar.Telefonos.Any(telefono => telefono.Id == int.Parse(idTelefono)))
                                         {
                                             Console.WriteLine("\nIngresa el número actualizado: ");
                                             string numeroActualizado = Console.ReadLine();
 
-                                            Telefono telefonoActualizado = personaAActualizar.Telefonos.Find(telefono => telefono.Id == idTelefono);
+                                            Telefono telefonoActualizado = personaAActualizar.Telefonos.Find(telefono => telefono.Id == int.Parse(idTelefono));
                                             telefonoActualizado.NumeroTelefono = numeroActualizado;
 
                                             int seActualizo = personaData.ActualizarTelefonoDePersona(telefonoActualizado);
@@ -231,16 +235,17 @@ namespace PersonasApp
                                             Console.WriteLine("\n-- El ID no existe --");
                                         }
                                         break;
-                                    case 4:
+                                    case "4":
                                         Console.WriteLine("\nIngresa el ID del email a actualizar: ");
-                                        int idEmail = int.Parse(Console.ReadLine());
+                                        string idEmail = Console.ReadLine();
+                                        
 
-                                        if (personaAActualizar.Emails.Any(email => email.Id == idEmail))
+                                        if (personaAActualizar.Emails.Any(email => email.Id == int.Parse(idEmail)))
                                         {
                                             Console.WriteLine("\nIngresa el email actualizado: ");
                                             string emailActualizado = Console.ReadLine();
 
-                                            Email emailAActualizar = personaAActualizar.Emails.Find(email => email.Id == idEmail);
+                                            Email emailAActualizar = personaAActualizar.Emails.Find(email => email.Id == int.Parse(idEmail));
                                             emailAActualizar.DireccionEmail = emailActualizado;
 
                                             int seActualizo = personaData.ActualizarEmailDePersona(emailAActualizar);
@@ -260,7 +265,7 @@ namespace PersonasApp
                                         }
 
                                         break;
-                                    case 5:
+                                    case "5":
                                         Console.WriteLine("\nIngresa el nuevo telefono: ");
                                         string nuevoTelefono = Console.ReadLine();
 
@@ -275,7 +280,7 @@ namespace PersonasApp
                                             Console.WriteLine("\n-- ERROR AL AGREGAR --");
                                         }
                                         break;
-                                    case 6:
+                                    case "6":
                                         Console.WriteLine("\nIngresa el nuevo email: ");
                                         string nuevoEmail = Console.ReadLine();
 
@@ -290,7 +295,7 @@ namespace PersonasApp
                                             Console.WriteLine("\n-- ERROR AL AGREGAR --");
                                         }
                                         break;
-                                    case 7:
+                                    case "7":
                                         break;
                                     default:
                                         break;
@@ -302,7 +307,7 @@ namespace PersonasApp
                             }
 
                             break;
-                        case 4:
+                        case "4":
                             salir = true;
                             break;
                         default:
@@ -321,7 +326,11 @@ namespace PersonasApp
                 //     Console.WriteLine(args.Length);
                 //     Console.ReadLine();
                 // }
-            } while (!salir && args.Length == 0);
+                else
+                {
+                    salir = true;
+                }
+            } while (!salir);
 
         }
 

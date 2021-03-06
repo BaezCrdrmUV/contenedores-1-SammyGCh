@@ -13,8 +13,8 @@ namespace PersonasApp
         {
             try
             {
-                //infoConnection = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
-                infoConnection = "server=localhost;port=3309;user=adminPersonas;password=practica1;database=personas;";
+                infoConnection = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+                //infoConnection = "server=localhost;port=3306;userid=adminPersonas;password=practica1;database=personas;";
                 connection = new MySqlConnection(infoConnection);
                 connection.Open();
             }

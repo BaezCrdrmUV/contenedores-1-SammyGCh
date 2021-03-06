@@ -83,7 +83,7 @@ GRANT ALL ON `personas`.* TO 'adminPersonas';
 GRANT SELECT ON TABLE `personas`.* TO 'adminPersonas';
 GRANT SELECT, INSERT, TRIGGER ON TABLE `personas`.* TO 'adminPersonas';
 GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE `personas`.* TO 'adminPersonas';
-GRANT EXECUTE ON ROUTINE `personas`.* TO 'adminPersonas';
+/*GRANT EXECUTE ON ROUTINE `personas`.* TO 'adminPersonas';*/
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
