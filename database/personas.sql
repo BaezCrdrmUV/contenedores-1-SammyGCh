@@ -76,13 +76,14 @@ INSERT INTO `telefono` VALUES (1,'2881001212','GUCS991001HVZDHM09');
 /*!40000 ALTER TABLE `telefono` ENABLE KEYS */;
 UNLOCK TABLES;
 
+GRANT ALL PRIVILEGES ON `personas`.* TO 'adminPersonas'@'localhost' IDENTIFIED BY 'practica1';
 
-CREATE USER 'adminPersonas' IDENTIFIED BY 'practica1';
+-- CREATE USER 'adminPersonas' IDENTIFIED BY 'practica1';
 
-GRANT ALL ON `personas`.* TO 'adminPersonas';
-GRANT SELECT ON TABLE `personas`.* TO 'adminPersonas';
-GRANT SELECT, INSERT, TRIGGER ON TABLE `personas`.* TO 'adminPersonas';
-GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE `personas`.* TO 'adminPersonas';
+-- GRANT ALL ON `personas`.* TO 'adminPersonas';
+-- GRANT SELECT ON TABLE `personas`.* TO 'adminPersonas';
+-- GRANT SELECT, INSERT, TRIGGER ON TABLE `personas`.* TO 'adminPersonas';
+-- GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE `personas`.* TO 'adminPersonas';
 /*GRANT EXECUTE ON ROUTINE `personas`.* TO 'adminPersonas';*/
 
 SET SQL_MODE=@OLD_SQL_MODE;
