@@ -76,7 +76,7 @@ INSERT INTO `telefono` VALUES (1,'2881001212','GUCS991001HVZDHM09');
 /*!40000 ALTER TABLE `telefono` ENABLE KEYS */;
 UNLOCK TABLES;
 
-GRANT ALL PRIVILEGES ON `personas`.* TO 'adminPersonas'@'localhost' IDENTIFIED BY 'practica1';
+GRANT ALL PRIVILEGES ON `personas`.* TO 'adminPersonas'@'%' IDENTIFIED BY 'practica1';
 
 -- CREATE USER 'adminPersonas' IDENTIFIED BY 'practica1';
 
