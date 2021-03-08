@@ -31,7 +31,7 @@ namespace PersonasApp
                 mySqlConnection = connection.OpenConnection();
                 query = new MySqlCommand("", mySqlConnection)
                 {
-                    CommandText = "SELECT * FROM Persona WHERE curp = @curp"
+                    CommandText = "SELECT * FROM persona WHERE curp = @curp"
                 };
 
                 MySqlParameter curpParameter = new MySqlParameter("@curp", MySqlDbType.String)
@@ -76,7 +76,7 @@ namespace PersonasApp
                 mySqlConnection = connection.OpenConnection();
                 query = new MySqlCommand("", mySqlConnection)
                 {
-                    CommandText = "SELECT * FROM Persona"
+                    CommandText = "SELECT * FROM persona"
                 };
 
                 reader = query.ExecuteReader();
@@ -96,9 +96,9 @@ namespace PersonasApp
                     );
                 }
             }
-            catch (MySqlException)
+            catch (MySqlException ex)
             {
-
+                Console.WriteLine(ex);
             }
             finally
             {
@@ -118,7 +118,7 @@ namespace PersonasApp
                 mySqlConnection = connection.OpenConnection();
                 query = new MySqlCommand("", mySqlConnection)
                 {
-                    CommandText = "SELECT idtelefono, telefono FROM Telefono WHERE Telefono.curp = @curp"
+                    CommandText = "SELECT idtelefono, telefono FROM telefono WHERE telefono.curp = @curp"
                 };
 
                 MySqlParameter curpParameter = new MySqlParameter("@curp", MySqlDbType.String)
@@ -164,7 +164,7 @@ namespace PersonasApp
                 mySqlConnection = connection.OpenConnection();
                 query = new MySqlCommand("", mySqlConnection)
                 {
-                    CommandText = "SELECT idemail, email FROM Email WHERE Email.curp = @curp"
+                    CommandText = "SELECT idemail, email FROM email WHERE email.curp = @curp"
                 };
 
                 MySqlParameter curpParameter = new MySqlParameter("@curp", MySqlDbType.String)
@@ -209,7 +209,7 @@ namespace PersonasApp
                 mySqlConnection = connection.OpenConnection();
                 query = new MySqlCommand("", mySqlConnection)
                 {
-                    CommandText = "INSERT INTO Persona (curp, nombres, apellidos) VALUES (@curp, @nombres, @apellidos)"
+                    CommandText = "INSERT INTO persona (curp, nombres, apellidos) VALUES (@curp, @nombres, @apellidos)"
                 };
 
                 MySqlParameter curpParameter = new MySqlParameter("@curp", MySqlDbType.String)
@@ -260,7 +260,7 @@ namespace PersonasApp
                 mySqlConnection = connection.OpenConnection();
                 query = new MySqlCommand("", mySqlConnection)
                 {
-                    CommandText = "INSERT INTO Telefono (telefono, curp) VALUES (@telefono, @curp)"
+                    CommandText = "INSERT INTO telefono (telefono, curp) VALUES (@telefono, @curp)"
                 };
 
                 MySqlParameter curpParameter = new MySqlParameter("@curp", MySqlDbType.String)
@@ -294,7 +294,7 @@ namespace PersonasApp
                 mySqlConnection = connection.OpenConnection();
                 query = new MySqlCommand("", mySqlConnection)
                 {
-                    CommandText = "INSERT INTO Email (email, curp) VALUES (@email, @curp)"
+                    CommandText = "INSERT INTO email (email, curp) VALUES (@email, @curp)"
                 };
 
                 MySqlParameter curpParameter = new MySqlParameter("@curp", MySqlDbType.String)
@@ -330,7 +330,7 @@ namespace PersonasApp
                 mySqlConnection = connection.OpenConnection();
                 query = new MySqlCommand("", mySqlConnection)
                 {
-                    CommandText = "UPDATE Persona SET nombres = @nombres WHERE curp = @curp"
+                    CommandText = "UPDATE persona SET nombres = @nombres WHERE curp = @curp"
                 };
 
                 MySqlParameter curpParameter = new MySqlParameter("@curp", MySqlDbType.String)
@@ -368,7 +368,7 @@ namespace PersonasApp
                 mySqlConnection = connection.OpenConnection();
                 query = new MySqlCommand("", mySqlConnection)
                 {
-                    CommandText = "UPDATE Persona SET apellidos = @apellidos WHERE curp = @curp"
+                    CommandText = "UPDATE persona SET apellidos = @apellidos WHERE curp = @curp"
                 };
 
                 MySqlParameter curpParameter = new MySqlParameter("@curp", MySqlDbType.String)
@@ -406,7 +406,7 @@ namespace PersonasApp
                 mySqlConnection = connection.OpenConnection();
                 query = new MySqlCommand("", mySqlConnection)
                 {
-                    CommandText = "UPDATE Telefono SET telefono = @telefono WHERE idtelefono = @idtelefono"
+                    CommandText = "UPDATE telefono SET telefono = @telefono WHERE idtelefono = @idtelefono"
                 };
 
                 MySqlParameter telefono = new MySqlParameter("@telefono", MySqlDbType.String)
@@ -444,7 +444,7 @@ namespace PersonasApp
                 mySqlConnection = connection.OpenConnection();
                 query = new MySqlCommand("", mySqlConnection)
                 {
-                    CommandText = "UPDATE Email SET email = @email WHERE idemail = @idemail"
+                    CommandText = "UPDATE email SET email = @email WHERE idemail = @idemail"
                 };
 
                 MySqlParameter email = new MySqlParameter("@email", MySqlDbType.String)
@@ -482,7 +482,7 @@ namespace PersonasApp
                 mySqlConnection = connection.OpenConnection();
                 query = new MySqlCommand("", mySqlConnection)
                 {
-                    CommandText = "INSERT INTO Telefono (telefono, curp) VALUES (@telefono, @curp)"
+                    CommandText = "INSERT INTO telefono (telefono, curp) VALUES (@telefono, @curp)"
                 };
 
                 MySqlParameter telefono = new MySqlParameter("@telefono", MySqlDbType.String)
@@ -520,7 +520,7 @@ namespace PersonasApp
                 mySqlConnection = connection.OpenConnection();
                 query = new MySqlCommand("", mySqlConnection)
                 {
-                    CommandText = "INSERT INTO Email (email, curp) VALUES (@email, @curp)"
+                    CommandText = "INSERT INTO email (email, curp) VALUES (@email, @curp)"
                 };
 
                 MySqlParameter email = new MySqlParameter("@email", MySqlDbType.String)

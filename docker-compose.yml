@@ -4,7 +4,7 @@ services:
   mysql_personas:
     image: mysql/mysql-server:latest
     ports:
-      - "3309:3306"
+      - "3320:3320"
     restart: always
     volumes: 
       - db_volume_personas:/var/lib/mysql
@@ -14,9 +14,8 @@ services:
       MYSQL_ROOT_PASSWORD: "root"
       MYSQL_HOST: localhost
       MYSQL_DATABASE: "personas"
-      #MYSQL_USER: "root"
-      MYSQL_USER: "adminPersonas"
-      MYSQL_PASSWORD: "practica1"
+      MYSQL_USER: "root"
+      MYSQL_TCP_PORT: 3320
     container_name: personas_database
 
   simple_app:
@@ -27,7 +26,7 @@ services:
       context: ./PersonasApp/
       dockerfile: Dockerfile
     environment: 
-      DB_CONNECTION_STRING: "server=personas_database;user=adminPersonas;password=practica1;database=personas;"
+      DB_CONNECTION_STRING: "server=personas_database;user=adminPersonas;password=practica1;database=Personas"
     container_name: personas_app
 
 

@@ -13,20 +13,9 @@ namespace PersonasApp
         {
             
             bool salir = false;
-            string opcionEntrada = "";
-
-            string infoConnection = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
-            Console.WriteLine(infoConnection);
+            string opcionEntrada = "1";
             do
             {
-                if (args.Length == 0)
-                {
-                    // MostrarMenuEntrada();
-                    // Console.ReadLine();
-
-                    Console.WriteLine("\n-- DEBE INGRESAR UNA OPCION --");
-                    opcionEntrada = "1";
-                }
 
                 if (args.Length > 0 && args[0].Equals("1")|| opcionEntrada.Equals("1"))
                 {
